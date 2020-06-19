@@ -1,6 +1,14 @@
-const {db} = require('./index.js');
+const db = require('./index.js');
 const Products = require('./Products.js');
-const faker = require ('faker');
+const faker = require('faker');
+
+Products.db.dropDatabase(function  (err, results) {
+  if (err) {
+
+  } else {
+    console.log(results);
+  }
+});
 
 const sampleProducts = [];
 
@@ -8,8 +16,8 @@ for (let i = 0; i < 100; i++) {
   let newProduct = {
     title: faker.commerce.productName(),
     titleUrl: faker.internet.url(),
-    imageUrl: faker.image.fashion(),
-    rating: (Math.floor((Math.random() * 50) + 1)/10),
+    imageUrl: faker.random.image(),
+    rating: (Math.floor((Math.random() * 50) + 1) / 10),
     reviewUrl: faker.internet.url(),
     price: faker.commerce.price(),
     prime: faker.random.boolean(),
@@ -19,9 +27,10 @@ for (let i = 0; i < 100; i++) {
   sampleProducts.push(newProduct);
 }
 
-const insertSampleProducts = function() {
+
+const insertSampleProducts = function () {
   Products.create(sampleProducts)
-    .then(() => db.db.close());
+    .then(() => db.close());
 };
 
 insertSampleProducts();

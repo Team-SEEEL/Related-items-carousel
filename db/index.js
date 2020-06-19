@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const mongoUri = 'mongodb://localhost/fecProducts';
 
-const db = mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+db = mongoose.connection;
 
 module.exports = db;
