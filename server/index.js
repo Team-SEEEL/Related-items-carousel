@@ -3,6 +3,7 @@ const express = require('express');
 const controllers = require('./controllers.js');
 
 const app = express();
+app.use(express.static('../client/dist/index.html'));
 const port = 3000;
 
 app.get('/', (req, res) => res.send('Hello World!'));
