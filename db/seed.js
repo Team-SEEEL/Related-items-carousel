@@ -2,9 +2,9 @@ const db = require('./index.js');
 const Products = require('./Products.js');
 const faker = require('faker');
 
-Products.db.dropDatabase(function  (err, results) {
+Products.db.dropDatabase((err, results) => {
   if (err) {
-
+    console.log (err);
   } else {
     console.log(results);
   }
@@ -13,7 +13,7 @@ Products.db.dropDatabase(function  (err, results) {
 const sampleProducts = [];
 
 for (let i = 0; i < 100; i++) {
-  let newProduct = {
+  const newProduct = {
     title: faker.commerce.productName(),
     titleUrl: faker.internet.url(),
     imageUrl: faker.random.image(),
@@ -23,7 +23,7 @@ for (let i = 0; i < 100; i++) {
     prime: faker.random.boolean(),
     bestSeller: faker.random.boolean(),
     department: faker.commerce.department(),
-  }
+  };
   sampleProducts.push(newProduct);
 }
 

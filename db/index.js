@@ -3,6 +3,6 @@ const mongoUri = 'mongodb://localhost/fecProducts';
 
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-db = mongoose.connection;
+const db = mongoose.connection;
 
 module.exports = db;
