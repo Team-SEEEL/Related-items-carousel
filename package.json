@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "babel-jest": "^26.0.1",
+    "eslint-plugin-jest": "^23.17.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongoose": "^5.9.19",
@@ -33,6 +34,7 @@
     "@babel/preset-react": "^7.10.1",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.1.0",
+    "babel-preset-airbnb": "^5.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
