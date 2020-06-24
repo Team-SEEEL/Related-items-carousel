@@ -26,4 +26,9 @@ describe('A suite', function () {
     const wrapper = shallow(<App />);
     expect(wrapper.type()).toEqual('div');
   })
+
+  it('Should render correctly', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper).toMatchSnapshot();
+  });
 });
