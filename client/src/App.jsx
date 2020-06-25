@@ -34,7 +34,7 @@ class App extends React.Component {
         currPage: cPage,
         prevPage: pPage,
       });
-      this.getPagePictures(this.state.currPage, this.state.prevPage);
+      this.getPagePictures(cPage, pPage);
     } else {
       const cPage = this.state.maxPages;
       const pPage = this.state.maxPages - 1;
@@ -42,7 +42,7 @@ class App extends React.Component {
         currPage: cPage,
         prevPage: pPage,
       });
-      this.getPagePictures(this.state.currPage, this.state.prevPage);
+      this.getPagePictures(cPage, pPage);
     }
   }
 
@@ -54,7 +54,7 @@ class App extends React.Component {
         currPage: cPage,
         prevPage: pPage,
       });
-      this.getPagePictures(this.state.currPage, this.state.prevPage);
+      this.getPagePictures(cPage, pPage);
     } else {
       const cPage = 1;
       const pPage = 0;
@@ -62,7 +62,7 @@ class App extends React.Component {
         currPage: cPage,
         prevPage: pPage,
       });
-      this.getPagePictures(this.state.currPage, this.state.prevPage);
+      this.getPagePictures(cPage, pPage);
     }
   }
 
@@ -84,6 +84,7 @@ class App extends React.Component {
       const content = [];
       const start = previous * 5;
       const end = this.state.photoArr.length;
+      console.log(start, end)
 
       for (var i = start; i < end; i++) {
         content.push(<Image photo={this.state.photoArr[i]} key={this.state.photoArr[i]._id} />);
