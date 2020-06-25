@@ -26,23 +26,44 @@ class App extends React.Component {
   }
 
   onPrevClick() {
-    const cPage = this.state.currPage - 1;
-    const pPage = this.state.prevPage -1;
-    this.setState({
-      currPage: cPage,
-      prevPage: pPage,
-    });
-    this.getPagePictures(this.state.currPage, this.state.prevPage)
+    if (this.state.prevPage !== 0) {
+
+      const cPage = this.state.currPage - 1;
+      const pPage = this.state.prevPage - 1;
+      this.setState({
+        currPage: cPage,
+        prevPage: pPage,
+      });
+      this.getPagePictures(this.state.currPage, this.state.prevPage);
+    } else {
+      const cPage = this.state.maxPages;
+      const pPage = this.state.maxPages - 1;
+      this.setState({
+        currPage: cPage,
+        prevPage: pPage,
+      });
+      this.getPagePictures(this.state.currPage, this.state.prevPage);
+    }
   }
 
   onNextClick() {
-    const cPage = this.state.currPage + 1;
-    const pPage = this.state.prevPage +1;
-    this.setState({
-      currPage: cPage,
-      prevPage: pPage,
-    });
-    this.getPagePictures(this.state.currPage, this.state.prevPage)
+    if(this.state.currPage !== this.state.maxPages) {
+      const cPage = this.state.currPage + 1;
+      const pPage = this.state.prevPage + 1;
+      this.setState({
+        currPage: cPage,
+        prevPage: pPage,
+      });
+      this.getPagePictures(this.state.currPage, this.state.prevPage);
+    } else {
+      const cPage = 1;
+      const pPage = 0;
+      this.setState({
+        currPage: cPage,
+        prevPage: pPage,
+      });
+      this.getPagePictures(this.state.currPage, this.state.prevPage);
+    }
   }
 
   getPagePictures(current, previous) {
