@@ -23,3 +23,4 @@ class Image extends React.Component {
 }
 
 export default Image;
+
