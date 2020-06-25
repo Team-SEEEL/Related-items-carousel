@@ -1,23 +1,43 @@
 import React from 'react';
 import Image from './Image.jsx';
+import HideAd from './HideAd.jsx';
+import ShowAd from './ShowAd.jsx';
 
 class ImageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currPage: 1,
-      prevPage: 0,
+      showAdFeedBack: false,
     };
+    this.handleShowAdFeedBack = this.handleShowAdFeedBack.bind(this);
+    this.handleHideAdFeedBack = this.handleHideAdFeedBack.bind(this);
+    this.renderAdShow = this.renderAdShow.bind(this);
   }
 
+  handleShowAdFeedBack() {
+    this.setState({ showAdFeedBack: true });
+  }
+
+  handleHideAdFeedBack() {
+    this.setState({ showAdFeedBack: false });
+  }
+
+  renderAdShow() {
+    if (this.state.showAdFeedBack) {
+      return <HideAd onClick={this.handleHideAdFeedBack} />;
+    } else {
+      return <ShowAd onClick={this.handleShowAdFeedBack} />;
+    }
+  }
 
   render() {
 
     return (
       <div>
-        <span onClick={this.props.onPrevClick}>&lang;</span>
+
         {this.props.content}
-        <span onClick={this.props.onNextClick}>&rang;</span>
+        {this.renderAdShow()}
+
       </div>
     );
   }

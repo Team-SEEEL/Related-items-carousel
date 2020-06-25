@@ -96,7 +96,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ImageList photoArr={this.state.photoArr} maxPages={this.state.maxPages} content={this.state.photosPage} onNextClick={this.onNextClick} onPrevClick={this.onPrevClick} />
+        <span onClick={this.onPrevClick}>&lang;</span>
+        <ImageList photoArr={this.state.photoArr} maxPages={this.state.maxPages} content={this.state.photosPage} />
+        <span onClick={this.onNextClick}>&rang;</span>
       </div>
     );
   }
