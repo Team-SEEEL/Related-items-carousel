@@ -67,17 +67,32 @@ class App extends React.Component {
   }
 
   getPagePictures(current, previous) {
-    const content = [];
-    const start = previous * 5;
-    const end = current * 5;
+    if(current !== this.state.maxPages) {
 
-    for (var i = start; i < end; i++) {
-      content.push(<Image photo={this.state.photoArr[i]} key={this.state.photoArr[i]._id} />);
+      const content = [];
+      const start = previous * 5;
+      const end = current * 5;
+
+      for (var i = start; i < end; i++) {
+        content.push(<Image photo={this.state.photoArr[i]} key={this.state.photoArr[i]._id} />);
+      }
+
+      this.setState({
+        photosPage: content,
+      })
+    } else {
+      const content = [];
+      const start = previous * 5;
+      const end = this.state.photoArr.length;
+
+      for (var i = start; i < end; i++) {
+        content.push(<Image photo={this.state.photoArr[i]} key={this.state.photoArr[i]._id} />);
+      }
+
+      this.setState({
+        photosPage: content,
+      })
     }
-
-    this.setState({
-      photosPage: content,
-    })
   }
 
   getPictures() {
@@ -96,6 +111,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div>Sponsored products related to this item</div>
+        <div>{`Page ${this.state.currPage} of ${this.state.maxPages}`}</div>
         <span onClick={this.onPrevClick}>&lang;</span>
         <ImageList photoArr={this.state.photoArr} maxPages={this.state.maxPages} content={this.state.photosPage} />
         <span onClick={this.onNextClick}>&rang;</span>
