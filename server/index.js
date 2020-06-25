@@ -9,5 +9,6 @@ const port = 3000;
 // app.get('/', (req, res) => res.send('Hello World!'));
 
 app.get('/api/products', controllers.getProducts);
+app.get('/api/products/:department', controllers.getDepartment);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
