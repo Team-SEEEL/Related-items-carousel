@@ -1,39 +1,70 @@
 import React from 'react';
-import HideAd from './HideAd.jsx';
-import ShowAd from './ShowAd.jsx';
+import Modal from './Modal.jsx';
 
 class Image extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAdFeedBack: false,
+      showModal: false,
     };
-    this.handleShowAdFeedBack = this.handleShowAdFeedBack.bind(this);
-    this.handleHideAdFeedBack = this.handleHideAdFeedBack.bind(this);
-    this.renderAdShow = this.renderAdShow.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  handleShowAdFeedBack() {
-    this.setState({ showAdFeedBack: true });
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
   }
 
-  handleHideAdFeedBack() {
-    this.setState({ showAdFeedBack: false });
-  }
-
-  renderAdShow() {
-    if (this.state.showAdFeedBack) {
-      return <HideAd onClick={this.handleHideAdFeedBack} />;
+  renderFeedback() {
+    if (this.props.showAd) {
+      const { showModal } = this.state;
+      return (
+        <React.Fragment>
+          <div
+            className="modal-toggle-button"
+            onClick={this.toggleModal}
+          >
+            Feedback
+          </div>
+          {
+            showModal ? (
+              <Modal>
+                <h1>Share your feedback</h1>
+                <img src={this.props.photo.imageUrl}></img>
+                <div>{this.props.photo.title}</div>
+                <div>${this.props.photo.price}</div>
+                <form action="">
+                  <label>This item is:</label><br />
+                  <input type="radio" name="feedback" value="male" /> Unrelated to what I'm shopping for<br />
+                  <input type="radio" name="feedback" value="female" /> Inappropriate or offensive <br />
+                  <input type="radio" name="feedback" value="other" /> Other
+                </form>
+                <form action="/action_page.php">
+                  <label>Comments</label> <br />
+                  <textarea rows="4" cols="50">
+                  </textarea>
+                  <br />
+                  <button>Cancel</button>
+                  <input type="submit" value="Send feedback" />
+                </form>
+                <button className="modal-close" onClick={this.toggleModal}>X</button>
+              </Modal>
+            ) : null
+          }
+        </React.Fragment>
+      )
     } else {
-      return <ShowAd onClick={this.handleShowAdFeedBack} />;
+      return;
     }
   }
 
   render() {
 
+
     return (
       <span>
-
+        {this.renderFeedback()}
         <img src={this.props.photo.imageUrl}></img>
         <div className="title">{this.props.photo.title}</div>
         <div className="rating">{this.props.photo.rating}</div>
