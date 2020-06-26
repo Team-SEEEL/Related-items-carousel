@@ -92,7 +92,7 @@ class App extends React.Component {
 
       //probably should have just pushed photoArr data and mapped that
       for (var i = start; i < end; i++) {
-        content.push(<Image photo={this.state.photoArr[i]} key={this.state.photoArr[i]._id} showAd={showAd} />);
+        content.push(this.state.photoArr[i]);
       }
 
       this.setState({
@@ -104,7 +104,7 @@ class App extends React.Component {
       const end = this.state.photoArr.length;
 
       for (var i = start; i < end; i++) {
-        content.push(<Image photo={this.state.photoArr[i]} key={this.state.photoArr[i]._id} showAd={showAd} />);
+        content.push(this.state.photoArr[i]);
       }
 
       this.setState({

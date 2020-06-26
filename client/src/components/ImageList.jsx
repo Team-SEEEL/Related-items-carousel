@@ -17,7 +17,12 @@ class ImageList extends React.Component {
     return (
       <div>
 
-        {this.props.content}
+        {this.props.content.map(img => {
+          return (
+            <Image photo={img} key={img._id}/>
+          )
+        })
+        }
 
 
       </div>

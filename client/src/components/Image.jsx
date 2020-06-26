@@ -20,7 +20,7 @@ class Image extends React.Component {
     if (this.props.showAd) {
       const { showModal } = this.state;
       return (
-        <React.Fragment>
+        <>
           <div
             className="modal-toggle-button"
             onClick={this.toggleModal}
@@ -35,10 +35,17 @@ class Image extends React.Component {
                 <div>{this.props.photo.title}</div>
                 <div>${this.props.photo.price}</div>
                 <form action="">
-                  <label>This item is:</label><br />
-                  <input type="radio" name="feedback" value="male" /> Unrelated to what I'm shopping for<br />
-                  <input type="radio" name="feedback" value="female" /> Inappropriate or offensive <br />
-                  <input type="radio" name="feedback" value="other" /> Other
+                  <label>This item is:</label>
+                  <br />
+                  <input type="radio" name="feedback" value="male" />
+                  Unrelated to what I'm shopping for
+                  <br />
+                  <input type="radio" name="feedback" value="female" />
+                  Inappropriate or offensive
+                  <br />
+                  <input type="radio" name="feedback" value="other" />
+                  Other
+                  <br />
                 </form>
                 <form action="/action_page.php">
                   <label>Comments</label> <br />
@@ -52,8 +59,8 @@ class Image extends React.Component {
               </Modal>
             ) : null
           }
-        </React.Fragment>
-      )
+        </>
+      );
     } else {
       return;
     }
@@ -65,6 +72,7 @@ class Image extends React.Component {
     return (
       <span>
         {this.renderFeedback()}
+        <br />
         <img src={this.props.photo.imageUrl}></img>
         <div className="title">{this.props.photo.title}</div>
         <div className="rating">{this.props.photo.rating}</div>
