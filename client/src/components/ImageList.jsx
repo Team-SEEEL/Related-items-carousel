@@ -1,13 +1,14 @@
 import React from 'react';
 import Image from './Image.jsx';
 
+
 class ImageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currPage: 1,
-      prevPage: 0,
+      value:''
     };
+
   }
 
 
@@ -15,9 +16,10 @@ class ImageList extends React.Component {
 
     return (
       <div>
-        <span onClick={this.props.onPrevClick}>&lang;</span>
+
         {this.props.content}
-        <span onClick={this.props.onNextClick}>&rang;</span>
+
+
       </div>
     );
   }
