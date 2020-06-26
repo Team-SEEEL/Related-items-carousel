@@ -1,40 +1,20 @@
 import React from 'react';
 import Image from './Image.jsx';
 
+function ImageList(props) {
 
-class ImageList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value:''
-    };
+  return (
+    <div>
 
-  }
+      {props.content.map(img => {
+        return (
+          <Image photo={img} key={img._id} showAd={props.showAd} />
+        )
+      })
+      }
 
-
-  render() {
-
-    return (
-      <div>
-
-        {this.props.content.map(img => {
-          return (
-            <Image photo={img} key={img._id}/>
-          )
-        })
-        }
-
-
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default ImageList;
-
-// {this.props.photoArr.map((photo) => {
-//   return <Image photo={photo} key={photo._id} />;
-// })
-// }
-
-// {[<Image />, <Image />]}

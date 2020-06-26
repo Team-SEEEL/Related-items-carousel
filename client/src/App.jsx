@@ -1,6 +1,5 @@
 import React from 'react';
 import ImageList from './components/ImageList.jsx';
-import Image from './components/Image.jsx';
 import HideAd from './components/HideAd.jsx';
 import ShowAd from './components/ShowAd.jsx';
 import axios from 'axios';
@@ -12,7 +11,6 @@ class App extends React.Component {
       photoArr: [],
       maxPages: 0,
       currPage: 1,
-      prevPage: 0,
       photosPage: [],
       showAdFeedBack: false,
     };
@@ -36,23 +34,21 @@ class App extends React.Component {
     if (this.state.prevPage !== 0) {
 
       const cPage = this.state.currPage - 1;
-      const pPage = this.state.prevPage - 1;
+      const pPage = this.state.currPage - 2;
       this.setState({
         currPage: cPage,
-        prevPage: pPage,
         showAdFeedBack: false,
       });
-      this.getPagePictures(cPage, pPage, false);
+      this.getPagePictures(cPage, pPage);
       this.renderAdShow();
     } else {
       const cPage = this.state.maxPages;
       const pPage = this.state.maxPages - 1;
       this.setState({
         currPage: cPage,
-        prevPage: pPage,
         showAdFeedBack: false,
       });
-      this.getPagePictures(cPage, pPage, false);
+      this.getPagePictures(cPage, pPage);
       this.renderAdShow();
     }
   }
@@ -61,29 +57,27 @@ class App extends React.Component {
   onNextClick() {
     if(this.state.currPage !== this.state.maxPages) {
       const cPage = this.state.currPage + 1;
-      const pPage = this.state.prevPage + 1;
+      const pPage = this.state.currPage;
       this.setState({
         currPage: cPage,
-        prevPage: pPage,
         showAdFeedBack: false,
       });
-      this.getPagePictures(cPage, pPage, false);
+      this.getPagePictures(cPage, pPage);
       this.renderAdShow();
     } else {
       const cPage = 1;
       const pPage = 0;
       this.setState({
         currPage: cPage,
-        prevPage: pPage,
         showAdFeedBack: false,
       });
-      this.getPagePictures(cPage, pPage, false);
+      this.getPagePictures(cPage, pPage);
       this.renderAdShow();
     }
   }
 
   //  grabs 5 pictures saved in state and renders
-  getPagePictures(current, previous, showAd) {
+  getPagePictures(current, previous) {
     if(current !== this.state.maxPages) {
 
       const content = [];
@@ -123,20 +117,18 @@ class App extends React.Component {
           photoArr: results.data,
           maxPages: pages,
         });
-        this.getPagePictures(this.state.currPage, this.state.prevPage, false);
+        this.getPagePictures(this.state.currPage, 0);
       });
   }
 
   //  sets state to render show feedback
   handleShowAdFeedBack() {
-    this.getPagePictures(this.state.currPage, this.state.prevPage, true);
     this.setState({ showAdFeedBack: true });
 
   }
 
   // sets state to render hide feedback
   handleHideAdFeedBack() {
-    this.getPagePictures(this.state.currPage, this.state.prevPage, false);
     this.setState({ showAdFeedBack: false });
   }
 
@@ -155,7 +147,7 @@ class App extends React.Component {
         <div>Sponsored products related to this item</div>
         <div>{`Page ${this.state.currPage} of ${this.state.maxPages}`}</div>
         <span onClick={this.onPrevClick}>&lang;</span>
-        <ImageList photoArr={this.state.photoArr} maxPages={this.state.maxPages} content={this.state.photosPage} />
+        <ImageList content={this.state.photosPage} showAd={this.state.showAdFeedBack} />
         {this.renderAdShow()}
         <span onClick={this.onNextClick}>&rang;</span>
       </div>
