@@ -37,17 +37,17 @@ class Image extends React.Component {
                 <form action="">
                   <label>This item is:</label>
                   <br />
-                  <input type="radio" name="feedback" value="male" />
+                  <input type="radio" name="feedback" value="1" />
                   Unrelated to what I'm shopping for
                   <br />
-                  <input type="radio" name="feedback" value="female" />
+                  <input type="radio" name="feedback" value="2" />
                   Inappropriate or offensive
                   <br />
-                  <input type="radio" name="feedback" value="other" />
+                  <input type="radio" name="feedback" value="0" />
                   Other
                   <br />
                 </form>
-                <form action="/action_page.php">
+                <form action="">
                   <label>Comments</label> <br />
                   <textarea rows="4" cols="50">
                   </textarea>

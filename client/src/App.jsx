@@ -1,8 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import ImageList from './components/ImageList.jsx';
 import HideAd from './components/HideAd.jsx';
 import ShowAd from './components/ShowAd.jsx';
 import axios from 'axios';
+
+const CarouselContainer = styled.div`
+  height:340px;
+  width: 964px;
+  background: green;
+  align-content: center;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +39,7 @@ class App extends React.Component {
 
   //  on previous click changes state of currpage/prev page and grabs new pictures
   onPrevClick() {
-    if (this.state.prevPage !== 0) {
+    if (this.state.currPage !== 1) {
 
       const cPage = this.state.currPage - 1;
       const pPage = this.state.currPage - 2;
@@ -143,14 +151,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>Sponsored products related to this item</div>
-        <div>{`Page ${this.state.currPage} of ${this.state.maxPages}`}</div>
-        <span onClick={this.onPrevClick}>&lang;</span>
-        <ImageList content={this.state.photosPage} showAd={this.state.showAdFeedBack} />
+      <CarouselContainer>
+        <span>Sponsored products related to this item</span>
+        <span>{`Page ${this.state.currPage} of ${this.state.maxPages}`}</span>
+        <ImageList content={this.state.photosPage} showAd={this.state.showAdFeedBack} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} />
         {this.renderAdShow()}
-        <span onClick={this.onNextClick}>&rang;</span>
-      </div>
+      </CarouselContainer>
     );
   }
 }

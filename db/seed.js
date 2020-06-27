@@ -16,7 +16,7 @@ for (let i = 0; i < 100; i++) {
   const newProduct = {
     title: faker.commerce.productName(),
     titleUrl: faker.internet.url(),
-    imageUrl: faker.random.image(),
+    imageUrl: `https://loremflickr.com/160/160/products?random=${i}`,
     rating: (Math.floor((Math.random() * 50) + 1) / 10),
     reviewUrl: faker.internet.url(),
     price: faker.commerce.price(),
