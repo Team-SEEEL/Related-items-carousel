@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer } from '../Styles.js';
+import { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, ModalCloseButton } from '../Styles.js';
 import Modal from './Modal.jsx';
 
 class Image extends React.Component {
@@ -28,7 +28,6 @@ class Image extends React.Component {
           {
             showModal ? (
                 <Modal>
-                  <ModalOverlay>
                   <ModalWrapper>
                     <ModalHeader>Share your feedback</ModalHeader>
                     <PhotoContainer src={this.props.photo.imageUrl}></PhotoContainer>
@@ -60,10 +59,10 @@ class Image extends React.Component {
                         <button>Cancel</button>
                         <input type="submit" value="Send feedback" />
                       </form>
-                      <button className="modal-close" onClick={this.toggleModal}>X</button>
+                      <ModalCloseButton className="modal-close" onClick={this.toggleModal}>X</ModalCloseButton>
                     </FormsContainer>
                   </ModalWrapper>
-                  </ModalOverlay>
+                  <ModalOverlay onClick={this.toggleModal}/>
                 </Modal>
 
             ) : null

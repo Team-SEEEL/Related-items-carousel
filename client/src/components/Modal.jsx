@@ -2,7 +2,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 
 //  grab element with id modal
-const modalRoot = document.getElementById('modal');
+const modalRoot = document.getElementById('modal-carousel');
 
 class Modal extends React.Component {
   constructor(props) {
