@@ -1,16 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import {CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap} from './Styles.js';
 import ImageList from './components/ImageList.jsx';
 import HideAd from './components/HideAd.jsx';
 import ShowAd from './components/ShowAd.jsx';
 import axios from 'axios';
-
-const CarouselContainer = styled.div`
-  height:340px;
-  width: 964px;
-  background: green;
-  align-content: center;
-`;
 
 class App extends React.Component {
   constructor(props) {
@@ -152,10 +145,12 @@ class App extends React.Component {
   render() {
     return (
       <CarouselContainer>
-        <span>Sponsored products related to this item</span>
-        <span>{`Page ${this.state.currPage} of ${this.state.maxPages}`}</span>
+        <TopCarousel>
+          <SponsorWrapper>Sponsored products related to this item</SponsorWrapper>
+          <PageCountWrapper>{`Page ${this.state.currPage} of ${this.state.maxPages}`} </PageCountWrapper>
+        </ TopCarousel>
         <ImageList content={this.state.photosPage} showAd={this.state.showAdFeedBack} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} />
-        {this.renderAdShow()}
+        <ShowAdWrap>{this.renderAdShow()} </ShowAdWrap>
       </CarouselContainer>
     );
   }

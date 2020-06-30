@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer } from '../Styles.js';
 import Modal from './Modal.jsx';
 
 class Image extends React.Component {
@@ -21,65 +22,67 @@ class Image extends React.Component {
       const { showModal } = this.state;
       return (
         <>
-          <div
-            className="modal-toggle-button"
-            onClick={this.toggleModal}
-          >
+          <FeedbackWrapper className="modal-toggle-button" onClick={this.toggleModal}>
             Feedback
-          </div>
+          </FeedbackWrapper>
           {
             showModal ? (
-              <Modal>
-                <h1>Share your feedback</h1>
-                <img src={this.props.photo.imageUrl}></img>
-                <div>{this.props.photo.title}</div>
-                <div>${this.props.photo.price}</div>
-                <form action="">
-                  <label>This item is:</label>
-                  <br />
-                  <input type="radio" name="feedback" value="1" />
-                  Unrelated to what I'm shopping for
-                  <br />
-                  <input type="radio" name="feedback" value="2" />
-                  Inappropriate or offensive
-                  <br />
-                  <input type="radio" name="feedback" value="0" />
-                  Other
-                  <br />
-                </form>
-                <form action="">
-                  <label>Comments</label> <br />
-                  <textarea rows="4" cols="50">
-                  </textarea>
-                  <br />
-                  <button>Cancel</button>
-                  <input type="submit" value="Send feedback" />
-                </form>
-                <button className="modal-close" onClick={this.toggleModal}>X</button>
-              </Modal>
+                <Modal>
+                  <ModalOverlay>
+                  <ModalWrapper>
+                    <ModalHeader>Share your feedback</ModalHeader>
+                    <PhotoContainer src={this.props.photo.imageUrl}></PhotoContainer>
+                    <FloatTitlePrice>{this.props.photo.title}
+                      <br />
+                      <PriceColor>${this.props.photo.price}</PriceColor>
+                    </FloatTitlePrice>
+                    <br />
+                    <FormsContainer>
+                      <form action="">
+                        <label><b>This item is:</b></label>
+                        <br />
+                        <input type="radio" name="feedback" value="1" />
+                        Unrelated to what I'm shopping for
+                        <br />
+                        <input type="radio" name="feedback" value="2" />
+                        Inappropriate or offensive
+                        <br />
+                        <input type="radio" name="feedback" value="0" />
+                        Other
+                        <br />
+                      </form>
+                      <form action="">
+                        <label><b>Comments</b></label>
+                        <br />
+                        <textarea rows="10" cols="38" placeholder="Include additional details here">
+                        </textarea>
+                        <br />
+                        <button>Cancel</button>
+                        <input type="submit" value="Send feedback" />
+                      </form>
+                      <button className="modal-close" onClick={this.toggleModal}>X</button>
+                    </FormsContainer>
+                  </ModalWrapper>
+                  </ModalOverlay>
+                </Modal>
+
             ) : null
           }
         </>
       );
-    } else {
-      return;
     }
   }
 
   render() {
-
-
     return (
-      <span>
+      <div>
         {this.renderFeedback()}
         <br />
         <img src={this.props.photo.imageUrl}></img>
-        <div className="title">{this.props.photo.title}</div>
-        <div className="rating">{this.props.photo.rating}</div>
-        <div className="review">4 out of 5</div>
-        <div className="price">${this.props.photo.price}</div>
-        <div className="prime">TRUE</div>
-      </span>
+        <ProductName>{this.props.photo.title}</ProductName>
+        <Stars rating={this.props.photo.rating}></Stars>
+        <PricePrime>${this.props.photo.price} PRIME</PricePrime>
+      </div>
     );
   }
 }
