@@ -1,35 +1,21 @@
 import React from 'react';
 import Image from './Image.jsx';
+import {FlexBox, NextArrow, PrevArrow, ArrowContainer, NextArrowContainer, ImageContainer} from '../Styles.js';
 
+function ImageList(props) {
 
-class ImageList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value:''
-    };
-
-  }
-
-
-  render() {
-
-    return (
-      <div>
-
-        {this.props.content}
-
-
-      </div>
-    );
-  }
+  return (
+    <FlexBox>
+        <ArrowContainer><PrevArrow onClick={props.onPrevClick}>{`<`}</PrevArrow></ArrowContainer>
+      {props.content.map(img => {
+        return (
+          <ImageContainer><Image photo={img} key={img._id} showAd={props.showAd} /></ImageContainer>
+        )
+      })
+      }
+       <NextArrowContainer><NextArrow onClick={props.onNextClick}>{`>`}</NextArrow></NextArrowContainer>
+    </FlexBox>
+  );
 }
 
 export default ImageList;
-
-// {this.props.photoArr.map((photo) => {
-//   return <Image photo={photo} key={photo._id} />;
-// })
-// }
-
-// {[<Image />, <Image />]}
