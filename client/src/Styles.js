@@ -79,7 +79,7 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalOverlay = styled.div`
-  border: 1px solid;
+  border: 0px;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -156,6 +156,7 @@ const NextArrow = styled.button`
   font-size: 16px;
   vertical-align: middle;
   cursor: pointer;
+  outline-color: orange;
 `;
 
 const PrevArrow = styled.button`
@@ -170,6 +171,7 @@ const PrevArrow = styled.button`
   font-size: 16px;
   vertical-align: middle;
   cursor: pointer;
+  outline-color: orange;
 `;
 
 const ArrowContainer = styled.div`
