@@ -9,6 +9,11 @@ const ProductName = styled.div`
   font-family: "Amazon Ember",Arial,sans-serif;
   font-size: 13px;
   line-hieght: 19px;
+
+  &:hover {
+    color: orange;
+    text-decoration: underline;
+  }
 `;
 
 const PricePrime = styled.div`
@@ -21,7 +26,7 @@ const PricePrime = styled.div`
 
 const Stars = styled.div`
 --percent: ${(props) => `calc(${props.rating}/ 5 * 100%)`};
---star-color: #fff;
+--star-color: #c8c4c4;
 --star-background: #fc0;
 
 display: inline-block;
@@ -74,7 +79,7 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalOverlay = styled.div`
-  border: 1px solid;
+  border: 0px;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -121,6 +126,16 @@ const FormsContainer = styled.div`
   font-family: "Amazon Ember",Arial,sans-serif;
 `;
 
+const ModalCloseButton = styled.button`
+position: absolute;
+right: 6px;
+top: 9px;
+cursor: pointer;
+border: none;
+font-size: 20px;
+`;
+
+
 // Styles for ImageList.jsx
 const FlexBox = styled.div`
   display: flex;
@@ -141,6 +156,7 @@ const NextArrow = styled.button`
   font-size: 16px;
   vertical-align: middle;
   cursor: pointer;
+  outline-color: orange;
 `;
 
 const PrevArrow = styled.button`
@@ -155,6 +171,7 @@ const PrevArrow = styled.button`
   font-size: 16px;
   vertical-align: middle;
   cursor: pointer;
+  outline-color: orange;
 `;
 
 const ArrowContainer = styled.div`
@@ -209,7 +226,11 @@ const ShowAdWrap = styled.div`
   font-size: 11px;
   text-align: right;
   color: #0066C0;
+  &:hover {
+    color: orange;
+    text-decoration: underline;
+  }
 `;
 
-export { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, FlexBox, NextArrow, PrevArrow, ArrowContainer, NextArrowContainer, ImageContainer, CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap,
+export { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, ModalCloseButton, FlexBox, NextArrow, PrevArrow, ArrowContainer, NextArrowContainer, ImageContainer, CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap,
 };

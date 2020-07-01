@@ -1,14 +1,18 @@
 const express = require('express');
-
 const controllers = require('./controllers.js');
-
+const path = require('path');
 const app = express();
-app.use(express.static('public'));
-const port = 3000;
 
-// app.get('/', (req, res) => res.send('Hello World!'));
+app.use(express.static(path.join(__dirname, "/../public")));
 
-app.get('/api/products', controllers.getProducts);
-app.get('/api/products/:department', controllers.getDepartment);
+const port = 3002;
+
+// app.get('/', (req, res) => res.sendFile(`${__dirname}/../public/bundle.js`));
+
+app.get('/carousel/api/products', controllers.getProducts);
+app.get('/carousel/api/products/:index', controllers.getDepartment);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../public/index.html'));
+});
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

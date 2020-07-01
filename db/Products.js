@@ -3,15 +3,15 @@ const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
 const productSchema = new mongoose.Schema({
+  index: Number,
   title: String,
   titleUrl: String,
   imageUrl: String,
   rating: Number,
-  reviewUrl: String,
   price: String,
   prime: Boolean,
   bestSeller: Boolean,
-  department: String
+  department: String,
 });
 
 const Products = mongoose.model('Products', productSchema);
