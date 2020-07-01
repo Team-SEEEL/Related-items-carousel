@@ -110,8 +110,14 @@ class App extends React.Component {
 
   //  grabs pictures from db by department
   getPictures() {
-    /* Change the \s\S (selects all) and replace with main products department */
-    axios.get('/api/products/[\s\S]*')
+    let index;
+    if(window.location.pathname === "/") {
+      index = Math.floor(Math.random() * 101);
+    } else {
+      index = parseInt(window.location.pathname.slice(1));
+    }
+    /* Change the [\s\S]* (selects all) and replace with main products department */
+    axios.get(`/api/products/${index}`)
       .then((results) => {
         const pages = Math.ceil(results.data.length / 5);
         this.setState({
