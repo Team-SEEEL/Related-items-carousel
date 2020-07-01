@@ -117,7 +117,7 @@ class App extends React.Component {
       index = parseInt(window.location.pathname.slice(1));
     }
     /* Change the [\s\S]* (selects all) and replace with main products department */
-    axios.get(`/api/products/${index}`)
+    axios.get(`/carousel/api/products/${index}`)
       .then((results) => {
         const pages = Math.ceil(results.data.length / 5);
         this.setState({
