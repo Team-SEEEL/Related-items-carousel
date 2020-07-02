@@ -17,7 +17,7 @@ for (let i = 0; i < 100; i++) {
     index: i,
     title: faker.commerce.productName(),
     titleUrl: faker.internet.url(),
-    imageUrl: `https://loremflickr.com/160/160/products?random=${i}`,
+    imageUrl: `https://team-seeel-carousel-photos.s3-us-west-1.amazonaws.com/image${i}.jpg`,
     rating: (Math.floor((Math.random() * 50) + 1) / 10),
     price: faker.commerce.price(),
     prime: faker.random.boolean(),
