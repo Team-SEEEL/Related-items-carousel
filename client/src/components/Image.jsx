@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, ModalCloseButton } from '../Styles.js';
+import { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, CarouselPhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, ModalCloseButton } from '../Styles.js';
 import Modal from './Modal.jsx';
 
 class Image extends React.Component {
@@ -77,7 +77,7 @@ class Image extends React.Component {
       <div>
         {this.renderFeedback()}
         <br />
-        <img src={this.props.photo.imageUrl}></img>
+        <CarouselPhotoContainer src={this.props.photo.imageUrl}></CarouselPhotoContainer>
         <ProductName>{this.props.photo.title}</ProductName>
         <Stars rating={this.props.photo.rating}></Stars>
         <PricePrime>${this.props.photo.price} PRIME</PricePrime>

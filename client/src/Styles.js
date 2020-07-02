@@ -99,6 +99,11 @@ const PhotoContainer = styled.img`
   padding: 8px;
 `;
 
+const CarouselPhotoContainer = styled.img`
+  height: 160px;
+  width: 160px;
+`;
+
 const ModalHeader = styled.div`
   background:linear-gradient(to left, #f7f8fa, #e7e9ec);
   border-radius: 4px 4px 0 0;
@@ -232,5 +237,5 @@ const ShowAdWrap = styled.div`
   }
 `;
 
-export { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, ModalCloseButton, FlexBox, NextArrow, PrevArrow, ArrowContainer, NextArrowContainer, ImageContainer, CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap,
+export { ProductName, PricePrime, Stars, FeedbackWrapper, ModalWrapper, ModalOverlay, PhotoContainer,CarouselPhotoContainer, ModalHeader, FloatTitlePrice, PriceColor, FormsContainer, ModalCloseButton, FlexBox, NextArrow, PrevArrow, ArrowContainer, NextArrowContainer, ImageContainer, CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap,
 };
