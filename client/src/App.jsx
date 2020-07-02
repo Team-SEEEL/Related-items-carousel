@@ -112,7 +112,7 @@ class App extends React.Component {
   getPictures() {
     let index;
     if(window.location.pathname === "/") {
-      index = Math.floor(Math.random() * 101);
+      index = Math.floor(Math.random() * 100);
     } else {
       index = parseInt(window.location.pathname.slice(1));
     }
