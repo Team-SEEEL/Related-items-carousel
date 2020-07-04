@@ -6,6 +6,8 @@ WORKDIR /src/app
 
 COPY package.json ./
 
+COPY Dockerfile ./
+
 COPY public ./public/
 
 COPY  client ./client/
