@@ -1,4 +1,6 @@
 const path = require('path');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, '/client/index.jsx'),
@@ -20,5 +22,5 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, '/public'),
   },
-  mode: 'development',
+  mode: 'production',
 };
