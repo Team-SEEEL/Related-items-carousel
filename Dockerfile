@@ -4,6 +4,10 @@ RUN mkdir -p /src/app
 
 WORKDIR /src/app
 
+ENV DATABASE_IP="172.17.02"
+
+ENV PORT=3002
+
 COPY package.json ./
 
 COPY Dockerfile ./
@@ -17,7 +21,6 @@ COPY db ./db/
 COPY server ./server/
 
 RUN npm install --production
-
 
 
 EXPOSE 3002
