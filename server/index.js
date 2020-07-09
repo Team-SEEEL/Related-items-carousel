@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "/../public")));
 
-const port = 3002;
+const port = process.env.PORT || 3002;
 
 // app.get('/', (req, res) => res.sendFile(`${__dirname}/../public/bundle.js`));
 
