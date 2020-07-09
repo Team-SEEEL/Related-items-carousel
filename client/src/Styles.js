@@ -26,7 +26,7 @@ const PricePrime = styled.div`
 
 const Stars = styled.div`
 --percent: ${(props) => `calc(${props.rating}/ 5 * 100%)`};
---star-color: #c8c4c4;
+--star-color: rgba(100, 100, 100, .9);
 --star-background: #fc0;
 
 display: inline-block;
@@ -59,17 +59,18 @@ const FeedbackWrapper = styled.div`
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 17px;
 `;
 
 const ModalWrapper = styled.div`
   background: white;
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
+  margin: 15vh auto;
+  display: table;
   width: 350px;
   height: 442px;
   box-shadow: 0 5px 10px 2px rgba(195,192,192,.5);
@@ -82,7 +83,8 @@ const ModalOverlay = styled.div`
   border: 0px;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  height: 100vh;
   top: 0;
   bottom: 0;
   left: 0;
@@ -134,7 +136,7 @@ const FormsContainer = styled.div`
 const ModalCloseButton = styled.button`
 position: absolute;
 right: 6px;
-top: 9px;
+top: 5px;
 cursor: pointer;
 border: none;
 font-size: 20px;
@@ -146,9 +148,10 @@ const FlexBox = styled.div`
   display: flex;
   align-content: center;
   height: 288.2px;
-  width: 964 px;
+  width: ${(props) => `${props.viewWidth}px`};
 `;
 
+//964 px
 const NextArrow = styled.button`
   background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
   border: solid 1px;
@@ -187,7 +190,7 @@ const ArrowContainer = styled.div`
 const NextArrowContainer = styled.div`
   margin-top: 110.5px;
   margin-left: auto;
-  margin-right: 3px;
+  margin-right: 20px;
   justify-content: flex-end;
 `;
 
@@ -199,7 +202,7 @@ const ImageContainer = styled.div`
 // Styles for App.jsx
 const CarouselContainer = styled.div`
   height:350.6px;
-  width: 964px;
+  width: ${(props) => `${props.viewWidth}px`};
   align-content: center;
   border-top: 1px solid #E6E6E6;
   border-bottom:1px solid #E6E6E6;
@@ -222,6 +225,7 @@ const SponsorWrapper = styled.div`
 const PageCountWrapper = styled.div`
   font-size: 13px!important;
   line-height: 19px!important;
+  padding-right: 5px;
   text-align: right!important;
   font-family: "Amazon Ember",Arial,sans-serif;
 `;
@@ -230,6 +234,7 @@ const ShowAdWrap = styled.div`
   font-family: arial;
   font-size: 11px;
   text-align: right;
+  padding-right: 5px;
   color: #0066C0;
   &:hover {
     color: orange;

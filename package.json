@@ -12,6 +12,7 @@
     "build": "webpack",
     "db:setup": "node db/seed.js",
     "start": "node server/index.js",
+    "start:dev": "nodemon server/index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors"

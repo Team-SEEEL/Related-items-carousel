@@ -1,5 +1,5 @@
 import React from 'react';
-import {CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap} from './Styles.js';
+import { CarouselContainer, TopCarousel, SponsorWrapper, PageCountWrapper, ShowAdWrap } from './Styles.js';
 import ImageList from './components/ImageList.jsx';
 import HideAd from './components/HideAd.jsx';
 import ShowAd from './components/ShowAd.jsx';
@@ -14,6 +14,8 @@ class App extends React.Component {
       currPage: 1,
       photosPage: [],
       showAdFeedBack: false,
+      viewWidth: window.innerWidth,
+      numOfPhotosInCarousel: 5,
     };
 
     this.getPictures = this.getPictures.bind(this);
@@ -23,12 +25,14 @@ class App extends React.Component {
     this.handleShowAdFeedBack = this.handleShowAdFeedBack.bind(this);
     this.handleHideAdFeedBack = this.handleHideAdFeedBack.bind(this);
     this.renderAdShow = this.renderAdShow.bind(this);
+    this.changeCarouselLength= this.changeCarouselLength.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.changeCarouselLength);
     this.getPictures();
-
   }
+
 
   //  on previous click changes state of currpage/prev page and grabs new pictures
   onPrevClick() {
@@ -79,11 +83,12 @@ class App extends React.Component {
 
   //  grabs 5 pictures saved in state and renders
   getPagePictures(current, previous) {
+
     if(current !== this.state.maxPages) {
 
       const content = [];
-      const start = previous * 5;
-      const end = current * 5;
+      const start = previous * this.state.numOfPhotosInCarousel;
+      const end = current * this.state.numOfPhotosInCarousel;
 
       //probably should have just pushed photoArr data and mapped that
       for (var i = start; i < end; i++) {
@@ -95,7 +100,7 @@ class App extends React.Component {
       })
     } else {
       const content = [];
-      const start = previous * 5;
+      const start = previous * this.state.numOfPhotosInCarousel;
       const end = this.state.photoArr.length;
 
       for (var i = start; i < end; i++) {
@@ -116,16 +121,31 @@ class App extends React.Component {
     } else {
       index = parseInt(window.location.pathname.slice(1));
     }
+    const numOfPhotosInCarousel = Math.floor ((this.state.viewWidth - 80) / 174);
     /* Change the [\s\S]* (selects all) and replace with main products department */
     axios.get(`/carousel/api/products/${index}`)
       .then((results) => {
-        const pages = Math.ceil(results.data.length / 5);
+        const pages = Math.ceil(results.data.length / numOfPhotosInCarousel);
         this.setState({
           photoArr: results.data,
           maxPages: pages,
+          numOfPhotosInCarousel: numOfPhotosInCarousel,
         });
         this.getPagePictures(this.state.currPage, 0);
       });
+  }
+
+  changeCarouselLength() {
+    const newViewWidth = window.innerWidth;
+    const newNumOfPhotosInCarousel = Math.floor((newViewWidth - 80) / 174);
+    const newMaxPages = Math.ceil(this.state.photoArr.length / newNumOfPhotosInCarousel);
+    this.setState({
+      currPage: 1,
+      viewWidth: newViewWidth,
+      maxPages: newMaxPages,
+      numOfPhotosInCarousel: newNumOfPhotosInCarousel,
+    });
+    this.getPagePictures(1, 0);
   }
 
   //  sets state to render show feedback
@@ -150,12 +170,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <CarouselContainer>
+      <CarouselContainer width={this.state.viewWidth} >
         <TopCarousel>
           <SponsorWrapper>Sponsored products related to this item</SponsorWrapper>
           <PageCountWrapper>{`Page ${this.state.currPage} of ${this.state.maxPages}`} </PageCountWrapper>
         </ TopCarousel>
-        <ImageList content={this.state.photosPage} showAd={this.state.showAdFeedBack} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} />
+        <ImageList content={this.state.photosPage} showAd={this.state.showAdFeedBack} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} viewWidth={this.state.viewWidth} />
         <ShowAdWrap>{this.renderAdShow()} </ShowAdWrap>
       </CarouselContainer>
     );
